@@ -1,12 +1,10 @@
----
-title: "reading_data_from_the_web"
-author: "Sharon Kulali"
-output: github_document
----
+reading_data_from_the_web
+================
+Sharon Kulali
 
 loading visualization stuff
 
-```{r, message = FALSE}
+``` r
 library(tidyverse)
 library(patchwork)
 
@@ -29,21 +27,21 @@ scale_fill_discrete = scale_fill_viridis_d
 
 load the necessary libraries
 
-```{r, message = FALSE}
+``` r
 library(rvest)
 library(httr)
 ```
 
 import NSDUH data
 
-```{r}
+``` r
 nsduh_url = "http://samhda.s3-us-gov-west-1.amazonaws.com/s3fs-public/field-uploads/2k15StateFiles/NSDUHsaeShortTermCHG2015.htm"
 
 nsduh_html = 
   read_html(nsduh_url)
 ```
 
-```{r}
+``` r
 marj_use_df =
   nsduh_html |> 
   html_table() |> 
@@ -53,14 +51,14 @@ marj_use_df =
 
 import star wars data
 
-```{r}
+``` r
 swm_url = "https://www.imdb.com/list/ls070150896/"
 
 swm_html = 
   read_html(swm_url)
 ```
 
-```{r}
+``` r
 swm_title_vec =
   swm_html |> 
   html_elements(".lister-item-header a") |> 
@@ -77,4 +75,3 @@ swm_df =
     gross_rev = swm_gross_rev_vec
   )
 ```
-
