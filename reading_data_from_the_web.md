@@ -1,4 +1,4 @@
-reading_data_from_the_web
+Reading Data From the Web
 ================
 Sharon Kulali
 
@@ -74,4 +74,48 @@ swm_df =
     title = swm_title_vec,
     gross_rev = swm_gross_rev_vec
   )
+```
+
+get water data from NYC
+
+``` r
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") |> 
+  content("parsed")
+```
+
+    ## Rows: 44 Columns: 4
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## dbl (4): year, new_york_city_population, nyc_consumption_million_gallons_per...
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+BRFSS data
+
+``` r
+brfss_df = 
+  GET(
+    "https://chronicdata.cdc.gov/resource/acme-vg9e.csv",
+    query = list("$limit" = 5000)) |> 
+  content()
+```
+
+    ## Rows: 5000 Columns: 23
+    ## ── Column specification ────────────────────────────────────────────────────────
+    ## Delimiter: ","
+    ## chr (16): locationabbr, locationdesc, class, topic, question, response, data...
+    ## dbl  (6): year, sample_size, data_value, confidence_limit_low, confidence_li...
+    ## lgl  (1): locationid
+    ## 
+    ## ℹ Use `spec()` to retrieve the full column specification for this data.
+    ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+
+try it now!
+
+``` r
+poke_df = 
+  GET("http://pokeapi.co/api/v2/pokemon/1") |> 
+  content()
 ```

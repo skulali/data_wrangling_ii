@@ -1,5 +1,5 @@
 ---
-title: "reading_data_from_the_web"
+title: "Reading Data From the Web"
 author: "Sharon Kulali"
 output: github_document
 ---
@@ -76,5 +76,31 @@ swm_df =
     title = swm_title_vec,
     gross_rev = swm_gross_rev_vec
   )
+```
+
+get water data from NYC
+
+```{r}
+nyc_water = 
+  GET("https://data.cityofnewyork.us/resource/ia2d-e54m.csv") |> 
+  content("parsed")
+```
+
+BRFSS data
+
+```{r}
+brfss_df = 
+  GET(
+    "https://chronicdata.cdc.gov/resource/acme-vg9e.csv",
+    query = list("$limit" = 5000)) |> 
+  content()
+```
+
+try it now!
+
+```{r}
+poke_df = 
+  GET("http://pokeapi.co/api/v2/pokemon/1") |> 
+  content()
 ```
 
